@@ -35,7 +35,7 @@ It will integrate into your current Laravel project within minutes, and you can 
 
 Step 1. Run this code via your terminal (1-2 minutes)
 ```shell
-composer require 'binshops/laravel-ticket:0.*'
+composer require 'binshops/laravel-ticket'
 ```
 
 Step 2. After install, you have to add this line on your `config/app.php` in Service Providers section (1-2 minutes).

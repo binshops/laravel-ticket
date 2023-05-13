@@ -1,6 +1,6 @@
 {
     "name": "binshops/laravel-ticket",
-    "description": "A simple ticketing system for Laravel 5.1 – 5.8 and 6.* - 7.* - 8.* - 9.* - 19.* -which integrates smoothly with Laravel default users and auth system",
+    "description": "A simple ticketing system for Laravel 5.1 – 5.8 and 6.* - 7.* - 8.* - 9.* - 10.* -which integrates smoothly with Laravel default users and auth system",
     "type": "laravel-package",
     "keywords": ["laravel","helpdesk", "ticket", "support", "crm", "customer support"],
     "require": {

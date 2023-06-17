@@ -55,7 +55,7 @@ class LaravelTicketTableSeeder extends Seeder
         $agents_counter = 1;
 
         for ($a = 1; $a <= $this->agents_qty; $a++) {
-            $agent_info = new \App\User();
+            $agent_info = new \App\Models\User();
             $agent_info->name = $faker->name;
             $agent_info->email = 'agent'.$agents_counter.$this->email_domain;
             $agent_info->laravelticket_agent = 1;
@@ -100,7 +100,7 @@ class LaravelTicketTableSeeder extends Seeder
         $users_counter = 1;
 
         for ($u = 1; $u <= $this->users_qty; $u++) {
-            $user_info = new \App\User();
+            $user_info = new \App\Models\User();
             $user_info->name = $faker->name;
             $user_info->email = 'user'.$users_counter.$this->email_domain;
             $user_info->laravelticket_agent = 0;

@@ -41,7 +41,7 @@ Step 2. After install, you have to add this line on your `config/app.php` in Ser
 Binshops\LaravelTicket\LaravelTicketServiceProvider::class
 ```
 
-Step 3. Check if App\User exists
+Step 3. Check if App\Models exists
 
 Step 4. Make sure you have [authentication](https://laravel.com/docs/10.x/authentication) set up. In 5.2+, you can use `php artisan make:auth`
 

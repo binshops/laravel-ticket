@@ -2,7 +2,7 @@
 
 namespace Binshops\LaravelTicket\Models;
 
-use App\User;
+use App\Models;
 use Auth;
 
 class Agent extends User

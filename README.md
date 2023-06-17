@@ -29,16 +29,14 @@ It will integrate into your current Laravel project within minutes, and you can 
 2. [Laravel Datatables](https://github.com/yajra/laravel-datatables)
 3. [HTML Purifier](https://github.com/mewebstudio/Purifier)
 
+### Installation steps (<5 minutes)
 
-### Installation steps (4-8 minutes)
-
-
-Step 1. Run this code via your terminal (1-2 minutes)
+Step 1. Run this code via your terminal
 ```shell
 composer require 'binshops/laravel-ticket'
 ```
 
-Step 2. After install, you have to add this line on your `config/app.php` in Service Providers section (1-2 minutes).
+Step 2. After install, you have to add this line on your `config/app.php` in Service Providers section.
 ```php
 Binshops\LaravelTicket\LaravelTicketServiceProvider::class;
 ```
@@ -47,11 +45,11 @@ Step 3. Check if App\User exists
 
 Step 4. Make sure you have [authentication](https://laravel.com/docs/10.x/authentication) set up. In 5.2+, you can use `php artisan make:auth`
 
-Step 5. [Setting up your master view for LaravelTicket integration (1-2 minutes)](https://github.com/binshops/laravel-ticket/wiki/Integrating-LaravelTicket-views-with-your-project-template)
+Step 5. [Setting up your master view for LaravelTicket integration](https://github.com/binshops/laravel-ticket/wiki/Integrating-LaravelTicket-views-with-your-project-template)
 
 Step 6. Register at least one user into the system and log it in.
 
-Step 7. Go ahead to http://your-project-url/tickets-install to finalize the installation (1-2 minutes)
+Step 7. Go ahead to http://your-project-url/tickets-install to finalize the installation.
 
 Default laravel-ticket front route: http://your-project-url/tickets
 

@@ -37,15 +37,15 @@ composer require 'binshops/laravel-ticket'
 ```
 
 Step 2. After install, you have to add this line on your `config/app.php` in Service Providers section.
-```php
-Binshops\LaravelTicket\LaravelTicketServiceProvider::class;
+```
+Binshops\LaravelTicket\LaravelTicketServiceProvider::class
 ```
 
 Step 3. Check if App\User exists
 
 Step 4. Make sure you have [authentication](https://laravel.com/docs/10.x/authentication) set up. In 5.2+, you can use `php artisan make:auth`
 
-Step 5. [Setting up your master view for LaravelTicket integration](https://github.com/binshops/laravel-ticket/wiki/Integrating-LaravelTicket-views-with-your-project-template)
+Step 5. [Setting up your master view for LaravelTicket integration](#integrating-laravel-ticket-views-with-your-project-template)
 
 Step 6. Register at least one user into the system and log it in.
 
@@ -66,3 +66,36 @@ If you move your installation folder to another path (or server), you need to up
 
 ## Migration
 - `laravelcollective/html` This package is abandoned and no longer maintained. The author suggests using the spatie/laravel-html package instead.
+
+## Integrating Laravel Ticket views with your project template
+
+### Configuring the master view
+Laravel Ticket views system is developed to integrate with the current project master view (Laravel Ticket uses Bootstrap framework). The master view file is the main view file that is using "yield" to call header, content, footer sections. It should be located at resources/views (ex. `resources/views/layouts/master.blade.php`), open it and make sure it yields for page, content, and footer.
+
+@yield('page') Page section for passing the current page title
+```html
+<head> ...
+<title>My website - @yield('page')</title>
+</head>
+```
+
+@yield('content') Content section for the content
+```html
+<body> ...
+@yield('content')
+...
+</body>
+```
+
+@yield('footer') Footer section for passing the jquery scripts, so make sure it is called after you call the jquery
+```html
+<body> ...
+@yield('content')
+...
+<script src="/js/jquery.min.js"></script>
+..
+@yield('footer')
+</body>
+```
+
+Here's a [quick example](https://github.com/binshops/laravel-ticket/tree/master/src/Views/sample-app.blade.php) of a layout file.

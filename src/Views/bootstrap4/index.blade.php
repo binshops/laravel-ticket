@@ -5,7 +5,7 @@
 
 
 @section('laravelticket_header')
-{!! link_to_route($setting->grab('main_route').'.create', trans('laravelticket::lang.btn-create-new-ticket'), null, ['class' => 'btn btn-primary']) !!}
+	<a href="{{ route($setting->grab('main_route').'.create') }}" class="btn btn-primary">{{trans('laravelticket::lang.btn-create-new-ticket')}}</a>
 @stop
 
 @section('laravelticket_content_parent_class', 'pl-0 pr-0')

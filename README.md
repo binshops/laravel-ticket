@@ -64,9 +64,6 @@ If you move your installation folder to another path (or server), you need to up
 ## Documentation
 [LaravelTicket Wiki](https://github.com/binshops/laravel-ticket/wiki)
 
-## Migration
-- `laravelcollective/html` This package is abandoned and no longer maintained. The author suggests using the spatie/laravel-html package instead.
-
 ## Integrating Laravel Ticket views with your project template
 
 ### Configuring the master view

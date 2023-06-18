@@ -164,7 +164,7 @@ class LaravelTicketServiceProvider extends ServiceProvider
         /*
          * Register the service provider for the dependency.
          */
-        $this->app->register(\Collective\Html\HtmlServiceProvider::class);
+        $this->app->register(\Spatie\Html\HtmlServiceProvider::class);
 
         if (LaravelVersion::min('5.4')) {
             $this->app->register(\Yajra\DataTables\DataTablesServiceProvider::class);

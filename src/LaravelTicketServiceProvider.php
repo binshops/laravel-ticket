@@ -2,7 +2,7 @@
 
 namespace Binshops\LaravelTicket;
 
-use Collective\Html\FormFacade as CollectiveForm;
+use Spatie\Html\Facades\Html as CollectiveForm;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Route;
@@ -178,7 +178,7 @@ class LaravelTicketServiceProvider extends ServiceProvider
          * Create aliases for the dependency.
          */
         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-        $loader->alias('CollectiveForm', 'Collective\Html\FormFacade');
+        $loader->alias('Html', 'Spatie\Html\Facades\Html');
 
         /*
          * Register htmlify command. Need to run this when upgrading from <=0.2.2

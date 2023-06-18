@@ -5,7 +5,7 @@
     "keywords": ["laravel","helpdesk", "ticket", "support", "crm", "customer support"],
     "require": {
         "laravel/framework": "^5.1|^6.0|^7.0|^8.0|^9.0|^10.0",
-        "laravelcollective/html": "^5.1|^6.0",
+        "spatie/laravel-html": "^3.2",
         "illuminate/support": "^5.1|^6.0|^7.0|^8.0|^9.0|^10.0",
         "yajra/laravel-datatables-oracle": "^6.0|^8.0|^9.4|^9.11|^10.4",
         "jenssegers/date": "^3.0|^4.0",

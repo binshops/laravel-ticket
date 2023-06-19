@@ -3,11 +3,7 @@
 @section('page', trans('laravelticket::admin.status-index-title'))
 
 @section('laravelticket_header')
-{!! link_to_route(
-    $setting->grab('admin_route').'.status.create',
-    trans('laravelticket::admin.btn-create-new-status'), null,
-    ['class' => 'btn btn-primary'])
-!!}
+    <a href="{{ route($setting->grab('admin_route').'.status.create') }}" class="btn btn-primary">{{trans('laravelticket::admin.btn-create-new-status')}}</a>
 @stop
 
 @section('laravelticket_content_parent_class', 'p-0')
@@ -15,7 +11,7 @@
 @section('laravelticket_content')
     @if ($statuses->isEmpty())
         <h3 class="text-center">{{ trans('laravelticket::admin.status-index-no-statuses') }}
-            {!! link_to_route($setting->grab('admin_route').'.status.create', trans('laravelticket::admin.status-index-create-new')) !!}
+            <a href="{{ route($setting->grab('admin_route').'.status.create') }}">{{trans('laravelticket::admin.status-index-create-new')}}</a>
         </h3>
     @else
         <div id="message"></div>
@@ -37,29 +33,22 @@
                         {{ $status->name }}
                     </td>
                     <td>
-                        {!! link_to_route(
-                                                $setting->grab('admin_route').'.status.edit', trans('laravelticket::admin.btn-edit'), $status->id,
-                                                ['class' => 'btn btn-info'] )
-                            !!}
+                        {{ html()->a(route($setting->grab('admin_route').'.status.edit', $status->id), trans('laravelticket::admin.btn-edit'))->class('btn btn-info') }}
 
-                            {!! link_to_route(
-                                                $setting->grab('admin_route').'.status.destroy', trans('laravelticket::admin.btn-delete'), $status->id,
-                                                [
+                        {{
+    html()->a(route($setting->grab('admin_route').'.status.destroy', $status->id), trans('laravelticket::admin.btn-delete'))->attributes([
                                                 'class' => 'btn btn-danger deleteit',
                                                 'form' => "delete-$status->id",
                                                 "node" => $status->name
                                                 ])
-                            !!}
-                        {!! CollectiveForm::open([
-                                        'method' => 'DELETE',
-                                        'route' => [
-                                                    $setting->grab('admin_route').'.status.destroy',
-                                                    $status->id
-                                                    ],
-                                        'id' => "delete-$status->id"
-                                        ])
-                        !!}
-                        {!! CollectiveForm::close() !!}
+                                                }}
+
+                        {{
+
+    html()->form('DELETE', route($setting->grab('admin_route').'.status.destroy', $status->id))->id("delete-$status->id")->open()
+    }}
+
+                        {!! html()->closeModelForm() !!}
                     </td>
                 </tr>
             @endforeach

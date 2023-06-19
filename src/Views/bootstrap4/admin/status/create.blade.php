@@ -2,7 +2,9 @@
 @section('page', trans('laravelticket::admin.status-create-title'))
 
 @section('laravelticket_content')
-    {!! CollectiveForm::open(['route'=> $setting->grab('admin_route').'.status.store', 'method' => 'POST', 'class' => '']) !!}
-        @include('laravelticket::admin.status.form')
-    {!! CollectiveForm::close() !!}
+    {!! html()->form('POST', route($setting->grab('admin_route').'.status.store'))->open() !!}
+
+    @include('laravelticket::admin.status.form')
+
+    {!! html()->closeModelForm() !!}
 @stop

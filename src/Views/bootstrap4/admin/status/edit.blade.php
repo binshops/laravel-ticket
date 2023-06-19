@@ -2,10 +2,8 @@
 @section('page', trans('laravelticket::admin.status-edit-title', ['name' => ucwords($status->name)]))
 
 @section('laravelticket_content')
-    {!! CollectiveForm::model($status, [
-                                    'route' => [$setting->grab('admin_route').'.status.update', $status->id],
-                                    'method' => 'PATCH'
-                                    ]) !!}
-        @include('laravelticket::admin.status.form', ['update', true])
-    {!! CollectiveForm::close() !!}
+    {!! html()->modelForm($status, 'PATCH', route($setting->grab('admin_route').'.status.update', $status->id)) !!}
+
+    @include('laravelticket::admin.status.form', ['update', true])
+    {!! html()->closeModelForm() !!}
 @stop

@@ -23,10 +23,10 @@ It will integrate into your current Laravel project within minutes, and you can 
 4. Bootstrap 3, or Bootstrap 4
 5. Jquery
 
-**Dependents that are getting installed and configured automatically by LaravelTicket (no action required from you)**
+**Dependencies that are getting installed and configured automatically by LaravelTicket (no action required from you)**
 
-1. [LaravelCollective HTML](https://github.com/laravelcollective/html)
-2. [Laravel Datatables](https://github.com/yajra/laravel-datatables)
+1. [Spatie HTML](https://github.com/spatie/laravel-html)
+2. [Laravel Datatables v1.13.4](https://github.com/yajra/laravel-datatables)
 3. [HTML Purifier](https://github.com/mewebstudio/Purifier)
 
 ### Installation steps (<5 minutes)

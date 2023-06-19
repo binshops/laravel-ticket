@@ -16,7 +16,7 @@
 @stop
 
 @section('footer')
-	<script src="https://cdn.datatables.net/v/bs4/dt-{{ Binshops\LaravelTicket\Helpers\Cdn::DataTables }}/r-{{ Binshops\LaravelTicket\Helpers\Cdn::DataTablesResponsive }}/datatables.min.js"></script>
+	<script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
 	<script>
 	    $('.table').DataTable({
 	        processing: false,

@@ -35,13 +35,13 @@
                     <td>
                         {{ html()->a(route($setting->grab('admin_route').'.status.edit', $status->id), trans('laravelticket::admin.btn-edit'))->class('btn btn-info') }}
 
-                        {{
-    html()->a(route($setting->grab('admin_route').'.status.destroy', $status->id), trans('laravelticket::admin.btn-delete'))->attributes([
+                        {!!
+html()->a(route($setting->grab('admin_route').'.status.destroy', $status->id), trans('laravelticket::admin.btn-delete'))->attributes([
                                                 'class' => 'btn btn-danger deleteit',
                                                 'form' => "delete-$status->id",
                                                 "node" => $status->name
                                                 ])
-                                                }}
+                                                !!}
 
                         {{
 
@@ -60,14 +60,16 @@
 
 @section('footer')
     <script>
-        $( ".deleteit" ).click(function( event ) {
-            event.preventDefault();
-            if (confirm("{!! trans('laravelticket::admin.status-index-js-delete') !!}" + $(this).attr("node") + " ?"))
-            {
-                $form = $(this).attr("form");
-                $("#" + $form).submit();
-            }
+        $(function() {
+            $( ".deleteit" ).click(function( event ) {
+                event.preventDefault();
+                if (confirm("{!! trans('laravelticket::admin.status-index-js-delete') !!}" + $(this).attr("node") + " ?"))
+                {
+                    $form = $(this).attr("form");
+                    $("#" + $form).submit();
+                }
 
+            });
         });
     </script>
 @append

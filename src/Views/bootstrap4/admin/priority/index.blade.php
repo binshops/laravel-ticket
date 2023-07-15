@@ -3,11 +3,7 @@
 @section('page', trans('laravelticket::admin.priority-index-title'))
 
 @section('laravelticket_header')
-{!! link_to_route(
-    $setting->grab('admin_route').'.priority.create',
-    trans('laravelticket::admin.btn-create-new-priority'), null,
-    ['class' => 'btn btn-primary'])
-!!}
+    {{ html()->a(route($setting->grab('admin_route').'.priority.create'), trans('laravelticket::admin.btn-create-new-priority'))->class('btn btn-primary') }}
 @stop
 
 @section('laravelticket_content_parent_class', 'p-0')
@@ -15,7 +11,7 @@
 @section('laravelticket_content')
     @if ($priorities->isEmpty())
         <h3 class="text-center">{{ trans('laravelticket::admin.priority-index-no-priorities') }}
-            {!! link_to_route($setting->grab('admin_route').'.priority.create', trans('laravelticket::admin.priority-index-create-new')) !!}
+            {{ html()->a(route($setting->grab('admin_route').'.priority.create'), trans('laravelticket::admin.priority-index-create-new')) }}
         </h3>
     @else
         <div id="message"></div>
@@ -37,29 +33,21 @@
                         {{ $priority->name }}
                     </td>
                     <td>
-                        {!! link_to_route(
-                                                $setting->grab('admin_route').'.priority.edit', trans('laravelticket::admin.btn-edit'), $priority->id,
-                                                ['class' => 'btn btn-info'] )
-                            !!}
+                        {{ html()->a(route($setting->grab('admin_route').'.priority.edit', $priority->id), trans('laravelticket::admin.btn-edit'))->class('btn btn-info') }}
 
-                            {!! link_to_route(
-                                                $setting->grab('admin_route').'.priority.destroy', trans('laravelticket::admin.btn-delete'), $priority->id,
-                                                [
+                        {{
+    html()->a(route($setting->grab('admin_route').'.priority.destroy', $priority->id), trans('laravelticket::admin.btn-delete'))->attributes([
                                                 'class' => 'btn btn-danger deleteit',
                                                 'form' => "delete-$priority->id",
                                                 "node" => $priority->name
                                                 ])
-                            !!}
-                        {!! CollectiveForm::open([
-                                        'method' => 'DELETE',
-                                        'route' => [
-                                                    $setting->grab('admin_route').'.priority.destroy',
-                                                    $priority->id
-                                                    ],
-                                        'id' => "delete-$priority->id"
-                                        ])
-                        !!}
-                        {!! CollectiveForm::close() !!}
+    }}
+
+                        {{
+    html()->form('DELETE', route($setting->grab('admin_route').'.priority.destroy', $priority->id))->id("delete-$priority->id")->open()
+    }}
+
+                        {!! html()->closeModelForm() !!}
                     </td>
                 </tr>
             @endforeach
@@ -70,14 +58,16 @@
 @stop
 @section('footer')
     <script>
-        $( ".deleteit" ).click(function( event ) {
-            event.preventDefault();
-            if (confirm("{!! trans('laravelticket::admin.priority-index-js-delete') !!}" + $(this).attr("node") + " ?"))
-            {
-                $form = $(this).attr("form");
-                $("#" + $form).submit();
-            }
+        $(function() {
+            $( ".deleteit" ).click(function( event ) {
+                event.preventDefault();
+                if (confirm("{!! trans('laravelticket::admin.priority-index-js-delete') !!}" + $(this).attr("node") + " ?"))
+                {
+                    $form = $(this).attr("form");
+                    $("#" + $form).submit();
+                }
 
+            });
         });
     </script>
 @append

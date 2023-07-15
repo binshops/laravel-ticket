@@ -17,9 +17,8 @@
                 <td><a href="{!! route($setting->grab('admin_route').'.configuration.edit', [$configuration->id]) !!}" title="{{ trans('laravelticket::admin.table-edit').' '.$configuration->slug }}" data-toggle="tooltip">{!! $configuration->value !!}</a></td>
                 <td class="text-center">{!! $configuration->lang !!}</td>
                 <td class="text-center">
-                    {!! link_to_route(
-                        $setting->grab('admin_route').'.configuration.edit', trans('laravelticket::admin.btn-edit'), [$configuration->id],
-                        ['class' => 'btn btn-info', 'title' => trans('laravelticket::admin.table-edit').' '.$configuration->slug,  'data-toggle' => 'tooltip'] )
+                    {!!
+                        html()->a(route($setting->grab('admin_route').'.configuration.edit', $configuration->id), trans('laravelticket::admin.btn-edit'))->attributes(['class' => 'btn btn-info', 'title' => trans('laravelticket::admin.table-edit').' '.$configuration->slug,  'data-toggle' => 'tooltip'])
                     !!}
                 </td>
             </tr>

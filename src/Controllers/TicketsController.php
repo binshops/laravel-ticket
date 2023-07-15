@@ -96,11 +96,7 @@ class TicketsController extends Controller
     public function renderTicketTable($collection)
     {
         $collection->editColumn('subject', function ($ticket) {
-            return (string) link_to_route(
-                Setting::grab('main_route').'.show',
-                $ticket->subject,
-                $ticket->id
-            );
+            return html()->a(route(Setting::grab('main_route').'.show', $ticket->id), $ticket->subject);
         });
 
         $collection->editColumn('status', function ($ticket) {

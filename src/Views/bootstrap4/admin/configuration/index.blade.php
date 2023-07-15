@@ -3,11 +3,7 @@
 @section('page', trans('laravelticket::admin.config-index-title'))
 
 @section('laravelticket_header')
-{!! link_to_route(
-    $setting->grab('admin_route').'.configuration.create',
-    trans('laravelticket::admin.btn-create-new-config'), null,
-    ['class' => 'btn btn-primary'])
-!!}
+    {{ html()->a(route($setting->grab('admin_route').'.configuration.create'), trans('laravelticket::admin.btn-create-new-config'))->class('btn btn-primary') }}
 @stop
 
 @section('laravelticket_content_parent_class', 'pl-0 pr-0 pb-0')

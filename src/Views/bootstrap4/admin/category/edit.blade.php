@@ -2,11 +2,8 @@
 @section('page', trans('laravelticket::admin.category-edit-title', ['name' => ucwords($category->name)]))
 
 @section('laravelticket_content')
-    {!! CollectiveForm::model($category, [
-                                'route' => [$setting->grab('admin_route').'.category.update', $category->id],
-                                'method' => 'PATCH',
-                                'class' => ''
-                                ]) !!}
-        @include('laravelticket::admin.category.form', ['update', true])
-    {!! CollectiveForm::close() !!}
+    {!! html()->modelForm($priority, 'PATCH', route($setting->grab('admin_route').'.category.update', $category->id)) !!}
+
+    @include('laravelticket::admin.category.form', ['update', true])
+    {!! html()->closeModelForm() !!}
 @stop

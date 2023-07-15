@@ -5,7 +5,9 @@
     @if ($users->isEmpty())
         <h3 class="text-center">{{ trans('laravelticket::admin.agent-create-no-users') }}</h3>
     @else
-        {!! CollectiveForm::open(['route'=> $setting->grab('admin_route').'.agent.store', 'method' => 'POST', 'class' => '']) !!}
+        {!!
+     html()->form('POST', route($setting->grab('admin_route').'.agent.store'))->open()
+     !!}
         <p>{{ trans('laravelticket::admin.agent-create-select-user') }}</p>
         <table class="table table-hover">
             <tbody>
@@ -21,9 +23,10 @@
             @endforeach
             </tbody>
         </table>
-        {!! link_to_route($setting->grab('admin_route').'.agent.index', trans('laravelticket::admin.btn-back'), null, ['class' => 'btn btn-link']) !!}
-        {!! CollectiveForm::submit(trans('laravelticket::admin.btn-submit'), ['class' => 'btn btn-primary']) !!}
-        {!! CollectiveForm::close() !!}
+        {!! html()->a(route($setting->grab('admin_route').'.agent.index'), trans('laravelticket::admin.btn-back'))->class('btn btn-link') !!}
+
+        {!! html()->submit(trans('laravelticket::admin.btn-submit'))->class('btn btn-primary') !!}
+        {!! html()->closeModelForm() !!}
     @endif
 
     {!! $users->render("pagination::bootstrap-4") !!}

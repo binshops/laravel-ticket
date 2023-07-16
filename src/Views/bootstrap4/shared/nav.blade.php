@@ -2,32 +2,32 @@
     <ul class="nav nav-pills">
         <li role="presentation" class="nav-item">
             <a class="nav-link {!! $tools->fullUrlIs(route(Binshops\LaravelTicket\Models\Setting::grab('main_route') . '.index')) ? "active" : "" !!}"
-                href="{{ route(Binshops\LaravelTicket\Models\Setting::grab('main_route') . '.index') }}">{{ trans('laravelticket::lang.nav-active-tickets') }}
-                <span class="badge badge-pill badge-secondary ">
+               href="{{ route(Binshops\LaravelTicket\Models\Setting::grab('main_route') . '.index') }}">{{ trans('laravelticket::lang.nav-active-tickets') }}
+                <span class="badge-pill badge-secondary ">
                      <?php
-                        if ($u->isAdmin()) {
-                            echo Binshops\LaravelTicket\Models\Ticket::active()->count();
-                        } elseif ($u->isAgent()) {
-                            echo Binshops\LaravelTicket\Models\Ticket::active()->agentUserTickets($u->id)->count();
-                        } else {
-                            echo Binshops\LaravelTicket\Models\Ticket::userTickets($u->id)->active()->count();
-                        }
+                    if ($u->isAdmin()) {
+                        echo Binshops\LaravelTicket\Models\Ticket::active()->count();
+                    } elseif ($u->isAgent()) {
+                        echo Binshops\LaravelTicket\Models\Ticket::active()->agentUserTickets($u->id)->count();
+                    } else {
+                        echo Binshops\LaravelTicket\Models\Ticket::userTickets($u->id)->active()->count();
+                    }
                     ?>
                 </span>
             </a>
         </li>
         <li role="presentation" class="nav-item">
             <a class="nav-link {!! $tools->fullUrlIs(route(Binshops\LaravelTicket\Models\Setting::grab('main_route') . '-complete')) ? "active" : "" !!}"
-                 href="{{ route(Binshops\LaravelTicket\Models\Setting::grab('main_route') . '-complete') }}">{{ trans('laravelticket::lang.nav-completed-tickets') }}
-                <span class="badge badge-pill badge-secondary">
+               href="{{ route(Binshops\LaravelTicket\Models\Setting::grab('main_route') . '-complete') }}">{{ trans('laravelticket::lang.nav-completed-tickets') }}
+                <span class="badge-pill badge-secondary">
                     <?php
-                        if ($u->isAdmin()) {
-                            echo Binshops\LaravelTicket\Models\Ticket::complete()->count();
-                        } elseif ($u->isAgent()) {
-                            echo Binshops\LaravelTicket\Models\Ticket::complete()->agentUserTickets($u->id)->count();
-                        } else {
-                            echo Binshops\LaravelTicket\Models\Ticket::userTickets($u->id)->complete()->count();
-                        }
+                    if ($u->isAdmin()) {
+                        echo Binshops\LaravelTicket\Models\Ticket::complete()->count();
+                    } elseif ($u->isAgent()) {
+                        echo Binshops\LaravelTicket\Models\Ticket::complete()->agentUserTickets($u->id)->count();
+                    } else {
+                        echo Binshops\LaravelTicket\Models\Ticket::userTickets($u->id)->complete()->count();
+                    }
                     ?>
                 </span>
             </a>
@@ -36,7 +36,7 @@
         @if($u->isAdmin())
             <li role="presentation" class="nav-item">
                 <a class="nav-link {!! $tools->fullUrlIs(action('\Binshops\LaravelTicket\Controllers\DashboardController@index')) || Request::is($setting->grab('admin_route').'/indicator*') ? "active" : "" !!}"
-                    href="{{ action('\Binshops\LaravelTicket\Controllers\DashboardController@index') }}">{{ trans('laravelticket::admin.nav-dashboard') }}</a>
+                   href="{{ action('\Binshops\LaravelTicket\Controllers\DashboardController@index') }}">{{ trans('laravelticket::admin.nav-dashboard') }}</a>
             </li>
 
             <li role="presentation" class="nav-item dropdown">
@@ -49,7 +49,7 @@
                     $tools->fullUrlIs(action('\Binshops\LaravelTicket\Controllers\ConfigurationsController@index').'*') ||
                     $tools->fullUrlIs(action('\Binshops\LaravelTicket\Controllers\AdministratorsController@index').'*')
                     ? "active" : "" !!}"
-                    data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                   data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     {{ trans('laravelticket::admin.nav-settings') }}
                 </a>
                 <div class="dropdown-menu">

@@ -3,51 +3,41 @@
 @section('page_title', $ticket->subject)
 
 @section('laravelticket_header')
-<div>
-    @if(! $ticket->completed_at && $close_perm == 'yes')
-            {!! link_to_route($setting->grab('main_route').'.complete', trans('laravelticket::lang.btn-mark-complete'), $ticket->id,
-                                ['class' => 'btn btn-success']) !!}
-    @elseif($ticket->completed_at && $reopen_perm == 'yes')
-            {!! link_to_route($setting->grab('main_route').'.reopen', trans('laravelticket::lang.reopen-ticket'), $ticket->id,
-                                ['class' => 'btn btn-success']) !!}
-    @endif
-    @if($u->isAgent() || $u->isAdmin())
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ticket-edit-modal">
-            {{ trans('laravelticket::lang.btn-edit')  }}
-        </button>
-    @endif
-    @if($u->isAdmin())
-        @if($setting->grab('delete_modal_type') == 'builtin')
-            {!! link_to_route(
-                            $setting->grab('main_route').'.destroy', trans('laravelticket::lang.btn-delete'), $ticket->id,
-                            [
-                            'class' => 'btn btn-danger deleteit',
-                            'form' => "delete-ticket-$ticket->id",
-                            "node" => $ticket->subject
-                            ])
-            !!}
-        @elseif($setting->grab('delete_modal_type') == 'modal')
-{{-- // OR; Modal Window: 1/2 --}}
-            {!! CollectiveForm::open(array(
-                    'route' => array($setting->grab('main_route').'.destroy', $ticket->id),
-                    'method' => 'delete',
-                    'style' => 'display:inline'
-               ))
-            !!}
-            <button type="button"
-                    class="btn btn-danger"
-                    data-toggle="modal"
-                    data-target="#confirmDelete"
-                    data-title="{!! trans('laravelticket::lang.show-ticket-modal-delete-title', ['id' => $ticket->id]) !!}"
-                    data-message="{!! trans('laravelticket::lang.show-ticket-modal-delete-message', ['subject' => $ticket->subject]) !!}"
-             >
-              {{ trans('laravelticket::lang.btn-delete') }}
+    <div>
+        @if(! $ticket->completed_at && $close_perm == 'yes')
+            {!! html()->a(route($setting->grab('main_route').'.complete', $ticket->id), trans('laravelticket::lang.btn-mark-complete'))->class('btn btn-success') !!}
+        @elseif($ticket->completed_at && $reopen_perm == 'yes')
+            {!! html()->a(route($setting->grab('main_route').'.reopen', $ticket->id), trans('laravelticket::lang.reopen-ticket'))->class('btn btn-success') !!}
+        @endif
+        @if($u->isAgent() || $u->isAdmin())
+            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#ticket-edit-modal">
+                {{ trans('laravelticket::lang.btn-edit')  }}
             </button>
         @endif
-            {!! CollectiveForm::close() !!}
-{{-- // END Modal Window: 1/2 --}}
-    @endif
-</div>
+        @if($u->isAdmin())
+            @if($setting->grab('delete_modal_type') == 'builtin')
+                {!! html()->a(route($setting->grab('main_route').'.destroy', $ticket->id), trans('laravelticket::lang.btn-delete'))->attributes([
+                                'class' => 'btn btn-danger deleteit',
+                                'form' => "delete-ticket-$ticket->id",
+                                "node" => $ticket->subject
+                                ]) !!}
+            @elseif($setting->grab('delete_modal_type') == 'modal')
+                {{-- // OR; Modal Window: 1/2 --}}
+                {!! html()->form('delete', route($setting->grab('main_route').'.destroy', $ticket->id))->style('display:inline')->open() !!}
+                <button type="button"
+                        class="btn btn-danger"
+                        data-toggle="modal"
+                        data-target="#confirmDelete"
+                        data-title="{!! trans('laravelticket::lang.show-ticket-modal-delete-title', ['id' => $ticket->id]) !!}"
+                        data-message="{!! trans('laravelticket::lang.show-ticket-modal-delete-message', ['subject' => $ticket->subject]) !!}"
+                >
+                    {{ trans('laravelticket::lang.btn-delete') }}
+                </button>
+            @endif
+            {!! html()->closeModelForm() !!}
+            {{-- // END Modal Window: 1/2 --}}
+        @endif
+    </div>
 @stop
 
 @section('laravelticket_content')

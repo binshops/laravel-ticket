@@ -10,10 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/{{Binshops\LaravelTicket\Helpers\Cdn::Summernote}}/lang/summernote-{{$editor_locale}}.min.js"></script>
 @endif
 <script>
-
-
     $(function() {
-
         var options = $.extend(true, {lang: '{{$editor_locale}}' {!! $codemirror_enabled ? ", codemirror: {theme: '{$codemirror_theme}', mode: 'text/html', htmlMode: true, lineWrapping: true}" : ''  !!} } , {!! $editor_options !!});
 
         $("textarea.summernote-editor").summernote(options);
@@ -22,7 +19,5 @@
             $("#content").summernote("focus");
         });
     });
-
-
 </script>
 @endif

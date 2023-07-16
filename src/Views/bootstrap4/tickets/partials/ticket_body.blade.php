@@ -34,17 +34,9 @@
 
 {!! $ticket->html !!}
 
-{!! CollectiveForm::open([
-                'method' => 'DELETE',
-                'route' => [
-                            $setting->grab('main_route').'.destroy',
-                            $ticket->id
-                            ],
-                'id' => "delete-ticket-$ticket->id"
-                ])
-!!}
-{!! CollectiveForm::close() !!}
+{!! html()->form('DELETE', route($setting->grab('main_route').'.destroy', $ticket->id))->id("delete-ticket-$ticket->id")->open() !!}
 
+{!! html()->closeModelForm() !!}
 
 @if($u->isAgent() || $u->isAdmin())
     @include('laravelticket::tickets.edit')

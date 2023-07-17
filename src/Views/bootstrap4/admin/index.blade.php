@@ -4,9 +4,9 @@
 
 @section('laravelticket_extra_content')
     @if($tickets_count)
-        <div class="card-deck mb-3">
-            <div class="card bg-light">
-                <div class="card-body row d-flex align-items-center">
+        <div class="card-deck mb-3 row">
+            <div class="card bg-light col">
+                <div class="card-body align-items-center">
                     <div class="col-3" style="font-size: 5em;">
                         <i class="fas fa-th"></i>
                     </div>
@@ -17,8 +17,8 @@
                 </div>
             </div>
 
-            <div class="card bg-danger">
-                <div class="card-body row d-flex align-items-center">
+            <div class="card bg-danger col">
+                <div class="card-body align-items-center">
                     <div class="col-3" style="font-size: 5em;">
                         <i class="fas fa-wrench"></i>
                     </div>
@@ -29,8 +29,8 @@
                 </div>
             </div>
 
-            <div class="card bg-success">
-                <div class="card-body row d-flex align-items-center">
+            <div class="card bg-success col">
+                <div class="card-body align-items-center">
                     <div class="col-3" style="font-size: 5em;">
                         <i class="fas fa-thumbs-up"></i>
                     </div>
@@ -121,7 +121,7 @@
                             <small class="pull-right text-muted">
                                 <em>
                                     {{ trans('laravelticket::admin.index-open') }} /
-                                     {{ trans('laravelticket::admin.index-closed') }}
+                                    {{ trans('laravelticket::admin.index-closed') }}
                                 </em>
                             </small>
                         </a>
@@ -130,7 +130,7 @@
                         <span style="color: {{ $category->color }}">
                             {{ $category->name }} <span class="badge badge-pill badge-secondary">{{ $category->tickets()->count() }}</span>
                         </span>
-                        <span class="pull-right text-muted small">
+                                <span class="pull-right text-muted small">
                             <em>
                                 {{ $category->tickets()->whereNull('completed_at')->count() }} /
                                  {{ $category->tickets()->whereNotNull('completed_at')->count() }}
@@ -213,76 +213,76 @@
 @stop
 @section('footer')
     @if($tickets_count)
-    {{--@include('laravelticket::shared.footer')--}}
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        // Load the Visualization API and the corechart package.
-        google.charts.load('current', {'packages':['corechart']});
+        {{--@include('laravelticket::shared.footer')--}}
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {'packages':['corechart']});
 
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart);
 
-        // performance line chart
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ["{{ trans('laravelticket::admin.index-month') }}", "{!! implode('", "', $monthly_performance['categories']) !!}"],
-                @foreach($monthly_performance['interval'] as $month => $records)
+            // performance line chart
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ["{{ trans('laravelticket::admin.index-month') }}", "{!! implode('", "', $monthly_performance['categories']) !!}"],
+                        @foreach($monthly_performance['interval'] as $month => $records)
                     ["{{ $month }}", {!! implode(',', $records) !!}],
-                @endforeach
-            ]);
+                    @endforeach
+                ]);
 
-            var options = {
-                title: '{!! addslashes(trans('laravelticket::admin.index-performance-chart')) !!}',
-                curveType: 'function',
-                legend: {position: 'right'},
-                vAxis: {
-                    viewWindowMode:'explicit',
-                    format: '#',
-                    viewWindow:{
-                        min:0
+                var options = {
+                    title: '{!! addslashes(trans('laravelticket::admin.index-performance-chart')) !!}',
+                    curveType: 'function',
+                    legend: {position: 'right'},
+                    vAxis: {
+                        viewWindowMode:'explicit',
+                        format: '#',
+                        viewWindow:{
+                            min:0
+                        }
                     }
-                }
-            };
+                };
 
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+                var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-            chart.draw(data, options);
+                chart.draw(data, options);
 
-            // Categories Pie Chart
-            var cat_data = google.visualization.arrayToDataTable([
-              ['{{ trans('laravelticket::admin.index-category') }}', '{!! addslashes(trans('laravelticket::admin.index-tickets')) !!}'],
-              @foreach($categories_share as $cat_name => $cat_tickets)
+                // Categories Pie Chart
+                var cat_data = google.visualization.arrayToDataTable([
+                    ['{{ trans('laravelticket::admin.index-category') }}', '{!! addslashes(trans('laravelticket::admin.index-tickets')) !!}'],
+                        @foreach($categories_share as $cat_name => $cat_tickets)
                     ['{!! addslashes($cat_name) !!}', {{ $cat_tickets }}],
-              @endforeach
-            ]);
+                    @endforeach
+                ]);
 
-            var cat_options = {
-              title: '{!! addslashes(trans('laravelticket::admin.index-categories-chart')) !!}',
-              legend: {position: 'bottom'}
-            };
+                var cat_options = {
+                    title: '{!! addslashes(trans('laravelticket::admin.index-categories-chart')) !!}',
+                    legend: {position: 'bottom'}
+                };
 
-            var cat_chart = new google.visualization.PieChart(document.getElementById('catpiechart'));
+                var cat_chart = new google.visualization.PieChart(document.getElementById('catpiechart'));
 
-            cat_chart.draw(cat_data, cat_options);
+                cat_chart.draw(cat_data, cat_options);
 
-            // Agents Pie Chart
-            var agent_data = google.visualization.arrayToDataTable([
-              ['{{ trans('laravelticket::admin.index-agent') }}', '{!! addslashes(trans('laravelticket::admin.index-tickets')) !!}'],
-              @foreach($agents_share as $agent_name => $agent_tickets)
+                // Agents Pie Chart
+                var agent_data = google.visualization.arrayToDataTable([
+                    ['{{ trans('laravelticket::admin.index-agent') }}', '{!! addslashes(trans('laravelticket::admin.index-tickets')) !!}'],
+                        @foreach($agents_share as $agent_name => $agent_tickets)
                     ['{!! addslashes($agent_name) !!}', {{ $agent_tickets }}],
-              @endforeach
-            ]);
+                    @endforeach
+                ]);
 
-            var agent_options = {
-              title: '{!! addslashes(trans('laravelticket::admin.index-agents-chart')) !!}',
-              legend: {position: 'bottom'}
-            };
+                var agent_options = {
+                    title: '{!! addslashes(trans('laravelticket::admin.index-agents-chart')) !!}',
+                    legend: {position: 'bottom'}
+                };
 
-            var agent_chart = new google.visualization.PieChart(document.getElementById('agentspiechart'));
+                var agent_chart = new google.visualization.PieChart(document.getElementById('agentspiechart'));
 
-            agent_chart.draw(agent_data, agent_options);
+                agent_chart.draw(agent_data, agent_options);
 
-        }
-    </script>
+            }
+        </script>
     @endif
 @append

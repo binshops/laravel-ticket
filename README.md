@@ -1,4 +1,8 @@
-# Laravel Ticket System
+<h1 align="center">Laravel Ticket System</h1>
+<p align="center">
+    <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/20775532/253992265-718c7d50-6eea-4891-844f-6674e38f2d05.png" width="80%" />
+</p>
+
 A simple helpdesk ticketing system for Laravel 5.1+ (5.1 – 5.8 and 6.* - 7.* - 8.* - 9.* - 10.*) which integrates smoothly with Laravel default users and auth system. 
 It will integrate into your current Laravel project within minutes, and you can offer your customers and your team a nice and simple support ticket system. 
 

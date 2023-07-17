@@ -10,7 +10,7 @@
             document.getElementsByTagName("head")[0].appendChild(file)
         }
     }
-    loadCSS({!! '"'.asset('https://cdn.datatables.net/v/bs/dt-1.13.4/sp-2.1.2/datatables.min.css').'"' !!});
+    loadCSS({!! '"'.asset('https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css').'"' !!});
     @if($editor_enabled)
         loadCSS({!! '"'.asset('https://cdnjs.cloudflare.com/ajax/libs/summernote/' . Binshops\LaravelTicket\Helpers\Cdn::Summernote . '/summernote-bs4.css').'"' !!});
         @if($include_font_awesome)

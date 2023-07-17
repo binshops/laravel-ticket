@@ -1,4 +1,4 @@
-# Laravel Ticket System (Under Construction)
+# Laravel Ticket System
 A simple helpdesk ticketing system for Laravel 5.1+ (5.1 – 5.8 and 6.* - 7.* - 8.* - 9.* - 10.*) which integrates smoothly with Laravel default users and auth system. 
 It will integrate into your current Laravel project within minutes, and you can offer your customers and your team a nice and simple support ticket system. 
 
@@ -36,7 +36,7 @@ Step 1. Run this code via your terminal
 composer require 'binshops/laravel-ticket'
 ```
 
-Step 2. After install, you have to add this line on your `config/app.php` in Service Providers section.
+Step 2. After installing the package, you have to add this line on your `config/app.php` in Service Providers section.
 ```
 Binshops\LaravelTicket\LaravelTicketServiceProvider::class
 ```

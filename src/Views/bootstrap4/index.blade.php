@@ -16,7 +16,7 @@
 @stop
 
 @section('footer')
-	<script src="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
 	<script>
 		$(document).ready(function() {
 			$('.table').DataTable({
